@@ -21,58 +21,41 @@ typedef map<string,ll> mstrll;
 typedef map<string,lf> mstrlf;
 typedef map<string,string> mstrstr;
 
+#define priority_queue pq
 #define itr(i,lo,size) for(int i=lo;i<size;i++)
 #define itrR(i,hi,lo) for(int i=hi;i>=lo;i--)
 #define itr0 for(int i=0;i<n;i++)
 #define itr1 for(int i=1;i<=n;i++)
 
+#define IOS ios_base::sync_with_stdio(0);cin.tie(NULL);cout.tie(NULL);
 #define pb push_back
 #define lb lower_bound
 #define ub upper_bound
 #define bs binary_search
 #define be begin()
 #define en end()
+#define to top()
+#define po pop()
+#define si size()
 #define mp make_pair
 #define fi first
 #define se second
 
 ll gcd(ll a,ll b){if(a%b==0){return b;}else{return gcd(b,a%b);}}
 
-int main(){
-	ll n,k,q,l,r;cin>>n>>k>>q;
-	ll A[200002]={0};//Initially ZERO recipes recommend any temperature
-
-	//#1	The array resulting from #1, when later cumulated in #2, will 'magically' tell us how many recipes recommend each temperature
-	itr0{		
-		cin>>l>>r;
-		A[l]++;
-		A[r+1]--;
+int main(){IOS
+	string s;
+	cin>>s;
+	int n=s.length();
+	ll ans=0;
+	char c;
+	itr0{
+		c=s[i];
+		if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='1'||c=='3'||c=='5'||c=='7'||c=='9'){
+			ans++;
+		}
 	}
-
-	//#2	Here we first cumulate the result array from #1, and mark each temperature as pass or fail 
-	//	(i.e. whether ATLEAST k recipes	recommend it or not)
-
-	ll sum=A[0];
-	itr(i,0,200002){
-		sum+=A[i];
-		if(sum>=k){A[i]=1;}
-		else{A[i]=0;}
-	}
-
-	//#3 The second cumulation in this step tells us (for A[i]) the no. of 'passed' temps. (from 0 to A[i])
-	
-	sum=A[0];
-	itr(i,0,200002){
-		sum+=A[i];
-		A[i]=sum;
-	}
-
-	//#4 
-	itr(Q,0,q){
-		cin>>l>>r;
-		cout<<A[r]-A[l-1]<<"\n";
-	}
+	cout<<ans<<"\n";
+			
 	return 0;
-}
-	
-
+}	

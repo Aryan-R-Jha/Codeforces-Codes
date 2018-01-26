@@ -33,46 +33,16 @@ typedef map<string,string> mstrstr;
 #define be begin()
 #define en end()
 #define mp make_pair
-#define fi first
-#define se second
 
 ll gcd(ll a,ll b){if(a%b==0){return b;}else{return gcd(b,a%b);}}
 
 int main(){
-	ll n,k,q,l,r;cin>>n>>k>>q;
-	ll A[200002]={0};//Initially ZERO recipes recommend any temperature
-
-	//#1	The array resulting from #1, when later cumulated in #2, will 'magically' tell us how many recipes recommend each temperature
-	itr0{		
-		cin>>l>>r;
-		A[l]++;
-		A[r+1]--;
+	ll n;cin>>n;
+	cout<<n<<" ";
+	for(int i=1;i<=n-2;i++){
+		cout<<i<<" ";
 	}
-
-	//#2	Here we first cumulate the result array from #1, and mark each temperature as pass or fail 
-	//	(i.e. whether ATLEAST k recipes	recommend it or not)
-
-	ll sum=A[0];
-	itr(i,0,200002){
-		sum+=A[i];
-		if(sum>=k){A[i]=1;}
-		else{A[i]=0;}
-	}
-
-	//#3 The second cumulation in this step tells us (for A[i]) the no. of 'passed' temps. (from 0 to A[i])
-	
-	sum=A[0];
-	itr(i,0,200002){
-		sum+=A[i];
-		A[i]=sum;
-	}
-
-	//#4 
-	itr(Q,0,q){
-		cin>>l>>r;
-		cout<<A[r]-A[l-1]<<"\n";
-	}
-	return 0;
+	if(n>1){cout<<n-1<<"\n";}
+	if(n==1){cout<<"\n";}
+return 0;
 }
-	
-
